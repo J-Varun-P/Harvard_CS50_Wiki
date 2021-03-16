@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+
+    {% for p in content %}
+      <p>{{ p }}</p>
+    {% endfor %}
+
+    {%  autoescape off %}
+    {% for p in content %}
+      {{ p }}
+    {% endfor %}
+    {% endautoescape %}
+
+    {% for p in content %}
+       p
+    {% endfor %}
+{% endblock %}
