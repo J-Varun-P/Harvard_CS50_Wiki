@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block style %}
+  .notfound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 20px);
+    margin-top: -1rem;
+  }
+{% endblock %}
+
+{% block body %}
+  <div class="notfound">
+    <h1>404</h1>
+    <h1>Requested Page not found</h1>
+  </div>
+{% endblock %}

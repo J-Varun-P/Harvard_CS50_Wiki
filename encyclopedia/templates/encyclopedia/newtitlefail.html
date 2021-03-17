@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block style %}
+  .titlepresent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 20px);
+    margin-top: -1rem;
+  }
+{% endblock %}
+
+{% block body %}
+  <div class="titlepresent">
+    <h1>Title already present</h1>
+  </div>
+{% endblock %}

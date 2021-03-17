@@ -1,0 +1,38 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block style %}
+#id_pagecontent{
+  display: block;
+  height: 80vh;
+  width: 90%;
+}
+#styleme{
+  padding: 6px 12px;
+  color: #007bff;
+  border: none;
+  margin-top: .2em;
+}
+#styleme:hover{
+  color: white;
+  background-color: #007bff;
+}
+#f1{
+  margin-left: 1em;
+}
+label{
+  display: block;
+}
+{% endblock %}
+
+{% block body %}
+    <form id="f1" action="{% url 'addpage' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Submit" id="styleme">
+    </form>
+
+{% endblock %}
