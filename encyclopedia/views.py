@@ -48,14 +48,15 @@ def addpage(request):
             #print("I'm Here, look at me!!!!!!!!!!!!!!!!")
             title = form.cleaned_data["title"]
             pagecontent = form.cleaned_data["pagecontent"]
-            print(title, util.get_entry(title))
+            #print(title, util.get_entry(title))
             if util.get_entry(title) != None:
                 return render(request, "encyclopedia/newtitlefail.html")
             else:
                 util.save_entry(title,pagecontent)
-                return render(request, "encyclopedia/index.html", {
-                    "entries": util.list_entries()
-                })
+                return HttpResponseRedirect(f"{title}")
+                #return render(request, "encyclopedia/index.html", {
+                #    "entries": util.list_entries()
+                #})
     else:
         return render(request, "encyclopedia/addpage.html")
 
@@ -63,15 +64,19 @@ def addpage(request):
 def randompage(request):
     entries = util.list_entries()
     n = random.randint(0, len(entries) - 1)
+    return HttpResponseRedirect(f"{entries[n]}")
+    """
     print(f"{entries[n]}")
     s1 = util.get_entry(entries[n])
     s2 = s1.splitlines()
     s3 = markdown2.markdown(s1)
     s4 = s3.splitlines()
+    return HttpResponseRedirect(f"{entries[n]}")
     return render(request, "encyclopedia/title.html", {
     "content": s4
     })
     return HttpResponse(f"{entries[n]}")
+    """
 
 
 def editpage(request):
@@ -82,14 +87,29 @@ def editpage(request):
         return render(request, "encyclopedia/edittitle.html", {
         "form": formedit, "title": title, "pagecontent": pagecontent
         })
-        return HttpResponse("I hope this works")
+        #return HttpResponse("I hope this works")
 
 
 def search(request):
+    l = list()
     formsearch = Search(request.POST)
     if formsearch.is_valid():
         q = formsearch.cleaned_data["q"]
-    return HttpResponseRedirect(f"{q}")
+    r = util.list_entries()
+    #print(q)
+    #print(r)
+    if q in r:
+        return HttpResponseRedirect(f"{q}")
+    else:
+        for s in r:
+            if s.find(q) != -1:
+                l.append(s)
+        if len(l) != 0:
+            return render(request, "encyclopedia/index.html", {
+            "entries": l
+            })
+        else:
+            return HttpResponseRedirect(f"{q}")
 
 
 def editpagesave(request):
