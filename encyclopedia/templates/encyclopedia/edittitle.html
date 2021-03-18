@@ -7,7 +7,7 @@
 {% block style %}
 #id_pagecontent{
   display: block;
-  height: 80vh;
+  height: 90vh;
   width: 90%;
 }
 #styleme{
@@ -29,10 +29,9 @@ label{
 {% endblock %}
 
 {% block body %}
-    <form id="f1" action="{% url 'addpage' %}" method="post">
+    <form id="f1" action="{% url 'editpagesave' %}" method="post">
       {% csrf_token %}
       {{ form }}
       <input type="submit" value="Submit" id="styleme">
     </form>
-
 {% endblock %}

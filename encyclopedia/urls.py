@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("editsavepage", views.editpagesave, name="editpagesave"),
     path("search", views.search, name="search"),
     path("editpage", views.editpage, name="editpage"),
     path("randompage", views.randompage, name="randompage"),

@@ -4,14 +4,57 @@
     Encyclopedia
 {% endblock %}
 
+{% block style %}
+#pagecontent{
+  display: block;
+  height: 90vh;
+  width: 90%;
+}
+#styleme{
+  display: block;
+  padding: 6px 12px;
+  color: #007bff;
+  border: none;
+  margin-top: .2em;
+}
+#styleme:hover{
+  color: white;
+  background-color: #007bff;
+}
+/*label{
+  display: block;
+}*/
+#f1{
+  margin-left: 1em;
+  position: relative;
+}
+/*
+.row{
+  flex-wrap: no-wrap;
+}
+.sidebar{
+  min-width: 200px;
+}
+input{
+  max-width: 180px;
+}
+@media screen and (max-width:600px){
+  .row{
+    flex-wrap: wrap;
+  }
+}*/
+{% endblock %}
+
 {% block body %}
-    <form class="" action="{% url 'addpage' %}" method="post">
+    <form id="f1" action="{% url 'addpage' %}" method="post">
       {% csrf_token %}
       <label for="title">Title</label>
       <input type="text" name="title" id="title">
+      <!--<input type="submit" value="Submit" id="styleme">-->
+      <br>
       <label for="pagecontent">Page Markdown</label>
       <textarea name="pagecontent" id="pagecontent"></textarea>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" id="styleme">
     </form>
 
 {% endblock %}

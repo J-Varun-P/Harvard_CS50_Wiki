@@ -41,11 +41,11 @@ def title(request, title):
 
 def addpage(request):
     if request.method == "POST":
-        print("Hello")
+        #print("Hello")
         form = Title(request.POST)
         abcd = form.is_valid()
         if form.is_valid():
-            print("I'm Here, look at me!!!!!!!!!!!!!!!!")
+            #print("I'm Here, look at me!!!!!!!!!!!!!!!!")
             title = form.cleaned_data["title"]
             pagecontent = form.cleaned_data["pagecontent"]
             print(title, util.get_entry(title))
@@ -90,3 +90,15 @@ def search(request):
     if formsearch.is_valid():
         q = formsearch.cleaned_data["q"]
     return HttpResponseRedirect(f"{q}")
+
+
+def editpagesave(request):
+    if request.method == "POST":
+        #return HttpResponse(f"Please work")
+        form_edited_save_it = Textarea(request.POST)
+        if form_edited_save_it.is_valid():
+            title = form_edited_save_it.cleaned_data["title"]
+            #return HttpResponseRedirect(f"{title}")
+            pagecontent = form_edited_save_it.cleaned_data["pagecontent"]
+            util.save_entry(title, pagecontent)
+            return HttpResponseRedirect(f"{title}")
