@@ -1,4 +1,4 @@
-# Harvard_CS50_Wiki(CS50W)
+# Harvard_CS50_Wiki (CS50W)
 
 Wikipedia-like online encyclopedia.
 
